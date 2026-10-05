@@ -5,10 +5,6 @@ services:
     environment:
       - POSTGRES_USER=bob
       - POSTGRES_PASSWORD=bob123
-      - POSTGRES_DB=bob
+      - POSTGRES_DB=catdb
     ports:
       - "5432:5432"
-  catapp:
-    image: imagetest
-    ports:
-      - "8080:8080"

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: CatApp
+  datasource:
+    url: jdbc:postgresql://localhost:5432/catdb
+    username: bob
+    password: bob123
+  jpa:
+    show-sql: true
+    generate-ddl: true

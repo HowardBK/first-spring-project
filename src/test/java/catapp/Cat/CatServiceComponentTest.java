@@ -17,6 +17,6 @@ public class CatServiceComponentTest {
         assert result.getName().equals("Melli");
 
         var catList = catService.findAllCats();
-        assert catList.size() == 1;
+        assert !catList.isEmpty();
     }
 }

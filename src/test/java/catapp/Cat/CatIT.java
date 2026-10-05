@@ -10,10 +10,8 @@ import tools.jackson.databind.json.JsonMapper;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,7 +24,7 @@ public class CatIT {
     private JsonMapper jsonMapper;
 
     @Test
-    void shouldCreateTwoCats() throws Exception {
+    void shouldCreateTwoCatsThenDeleteThem() throws Exception {
         var cat1 = new Cat("Finn", 4, "Black and yellow");
         var cat2 = new Cat("Jordan", 2, "Grey");
 
@@ -54,12 +52,12 @@ public class CatIT {
 
         mockMvc.perform(get("/api/v1/cat/" + id2)).andExpect(jsonPath("$.name", is("Jordan")));
 
-
-//        mockMvc.perform(get("/api/v1/cat"))
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$", hasSize(2)));
+        mockMvc.perform(delete("/api/v1/cat/" + id)).andExpect(status().isOk());
+        mockMvc.perform(delete("/api/v1/cat/" + id2)).andExpect(status().isOk());
 
 
+        mockMvc.perform(get("/api/v1/cat/" + id)).andExpect(status().isNotFound());
+        mockMvc.perform(get("/api/v1/cat/" + id2)).andExpect(status().isNotFound());
     }
 
 }

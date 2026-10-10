@@ -1,5 +1,7 @@
-package catapp.Cat;
+package catapp.cat;
 
+import catapp.owner.OwnerRepository;
+import catapp.owner.OwnerService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,7 +11,8 @@ import static org.mockito.Mockito.*;
 
 public class CatServiceUnitTest {
     private final CatRepository mockCatRepository = mock(CatRepository.class);
-    private final CatService catService = new CatService(mockCatRepository);
+    private final OwnerService mockOwnerService = mock(OwnerService.class);
+    private final CatService catService = new CatService(mockCatRepository, mockOwnerService);
 
     @Test
     void shouldCreateCat() {
@@ -20,9 +23,9 @@ public class CatServiceUnitTest {
 
         var result = catService.addCat(cuteCat);
 
-        assert result.getName().equals("Finn");
-        assert result.getAge() == 4;
-        assert result.getColor().equals("Black and yellow");
+        assert result.getCatName().equals("Finn");
+        assert result.getCatAge() == 4;
+        assert result.getCatColor().equals("Black and yellow");
 
     }
 
@@ -36,8 +39,8 @@ public class CatServiceUnitTest {
         var result = catService.findAllCats();
 
         assert result.size() == 2;
-        assert result.get(0).getName().equals("Finn");
-        assert result.get(1).getColor().equals("Grey");
+        assert result.get(0).getCatName().equals("Finn");
+        assert result.get(1).getCatColor().equals("Grey");
     }
 
 
@@ -57,7 +60,7 @@ public class CatServiceUnitTest {
 //
 //        var result1 = catService.findAllCats();
 //        assert result1.size() == 2;
-//        assert result1.get(0).getName().equals("Finn");
+//        assert result1.get(0).getCatName().equals("Finn");
 //        assert result1.get(1).getColor().equals("Grey");
 //
 //        catService.deleteCat(1);

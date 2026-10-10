@@ -1,4 +1,4 @@
-package catapp.Cat;
+package catapp.cat;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +39,19 @@ public class CatController {
     @PostMapping("/list")
     public ResponseEntity<List<Cat>> postCats(@RequestBody List<Cat> cats) {
         var result = catService.addCats(cats);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/change")
+    public ResponseEntity<Cat> changeOwnership(@RequestBody OwnershipChangeRequest ownershipChangeRequest){
+        if (ownershipChangeRequest.catId() == null || ownershipChangeRequest.ownerId() == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        var result = catService.changeOwnership(ownershipChangeRequest);
+        if (result == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(result);
     }
 

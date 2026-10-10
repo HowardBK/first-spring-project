@@ -1,4 +1,4 @@
-package catapp.Cat;
+package catapp.cat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,24 +33,24 @@ public class CatIT {
                         .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.name", is("Finn")))
+                .andExpect(jsonPath("$.catName", is("Finn")))
                 .andReturn().getResponse().getContentAsString();
 
-        long id = jsonMapper.readTree(response).get("id").asLong();
+        long id = jsonMapper.readTree(response).get("catId").asLong();
 
-        mockMvc.perform(get("/api/v1/cat/" + id)).andExpect(jsonPath("$.name", is("Finn")));
+        mockMvc.perform(get("/api/v1/cat/" + id)).andExpect(jsonPath("$.catName", is("Finn")));
 
         var response2 = mockMvc.perform(post("/api/v1/cat")
                         .content(jsonMapper.writeValueAsString(cat2))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.name", is("Jordan")))
+                .andExpect(jsonPath("$.catName", is("Jordan")))
                 .andReturn().getResponse().getContentAsString();
 
-        long id2 = jsonMapper.readTree(response2).get("id").asLong();
+        long id2 = jsonMapper.readTree(response2).get("catId").asLong();
 
-        mockMvc.perform(get("/api/v1/cat/" + id2)).andExpect(jsonPath("$.name", is("Jordan")));
+        mockMvc.perform(get("/api/v1/cat/" + id2)).andExpect(jsonPath("$.catName", is("Jordan")));
 
         mockMvc.perform(delete("/api/v1/cat/" + id)).andExpect(status().isOk());
         mockMvc.perform(delete("/api/v1/cat/" + id2)).andExpect(status().isOk());

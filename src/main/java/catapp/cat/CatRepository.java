@@ -1,4 +1,4 @@
-package catapp.Cat;
+package catapp.cat;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

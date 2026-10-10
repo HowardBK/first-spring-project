@@ -1,4 +1,4 @@
-package catapp.Cat;
+package catapp.cat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class CatServiceComponentTest {
     void shouldCreateCat(){
         var result = catService.addCat(new Cat("Melli", 2, "Orange and white"));
 
-        assert result.getName().equals("Melli");
+        assert result.getCatName().equals("Melli");
 
         var catList = catService.findAllCats();
         assert !catList.isEmpty();

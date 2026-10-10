@@ -1,4 +1,4 @@
-package catapp.Cat;
+package catapp.cat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-@WebMvcTest
+@WebMvcTest(CatController.class)
 public class CatControllerTest {
 
     @Autowired
@@ -30,7 +30,7 @@ public class CatControllerTest {
     }
 
     @Test
-    void shoulGetCats() {
+    void shouldGetCats() {
         var result = controller.getAllCats();
         assert result.getBody().size() == 2;
     }

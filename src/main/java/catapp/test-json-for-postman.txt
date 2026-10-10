@@ -1,0 +1,16 @@
+{
+    "catName" : "Finn",
+    "catColor" : "yellow",
+    "catAge" : 3
+}
+
+{
+    "ownerFirstName" : "Julius",
+    "ownerLastName" : "Cæsar",
+    "ownerEmail" : "GetOwned@yahoo.com"
+}
+
+{
+    "catId" : 1,
+    "ownerId":1
+}

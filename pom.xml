@@ -11,7 +11,7 @@
     <groupId>no.jlwcrews</groupId>
     <artifactId>CatApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <catName>CatApp</catName>
+    <name>CatApp</name>
     <description>CatApp</description>
     <url/>
     <licenses>

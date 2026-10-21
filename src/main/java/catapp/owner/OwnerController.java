@@ -30,6 +30,11 @@ public class OwnerController {
         return ResponseEntity.ok(ownerService.createOwner(owner));
     }
 
+    @PutMapping
+    public ResponseEntity<Owner> updateOwner(@RequestBody Owner owner) {
+        return ResponseEntity.ok(ownerService.updateOwner(owner));
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteOwner(@PathVariable Long id) {
         ownerService.deleteOwner(id);
